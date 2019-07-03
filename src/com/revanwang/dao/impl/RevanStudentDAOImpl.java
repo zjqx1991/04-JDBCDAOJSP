@@ -4,7 +4,6 @@
 package com.revanwang.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 
 import com.revanwang.dao.IRevanStudentDAO;
 import com.revanwang.domain.RevanStudent;
+import com.revanwang.jdbc.JdbcUtil;
 
 /**
  * @Desc 	
@@ -31,10 +31,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			//1、加载驱动
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2、获取连接对象
-			connection = DriverManager.getConnection("jdbc:mysql:///jdbcdemo", "root", "admin");
+			connection = JdbcUtil.getConnection();
 			//3、获取执行SQL语句对象
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, student.getName());
@@ -45,24 +43,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally {
-				try {
-					if (connection != null) {
-						connection.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			JdbcUtil.close(connection, ps, null);
 		}
-	
 	}
 
 	@Override
@@ -75,10 +57,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			//1、加载驱动
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2、获取连接对象
-			connection = DriverManager.getConnection("jdbc:mysql:///jdbcdemo", "root", "admin");
+			connection = JdbcUtil.getConnection();
 			//3、获取执行SQL语句对象
 			ps = connection.prepareStatement(sql);
 			ps.setLong(1, id);
@@ -88,22 +68,7 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally {
-				try {
-					if (connection != null) {
-						connection.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			JdbcUtil.close(connection, ps, null);
 		}
 	}
 
@@ -118,10 +83,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 		PreparedStatement ps = null;
 		
 		try {
-			//1、加载驱动
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2、获取连接对象
-			connection = DriverManager.getConnection("jdbc:mysql:///jdbcdemo", "root", "admin");
+			connection = JdbcUtil.getConnection();
 			
 			if (get(student.getId()) != null) {
 				//3、获取执行SQL语句对象
@@ -136,22 +99,7 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally {
-				try {
-					if (connection != null) {
-						connection.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			JdbcUtil.close(connection, ps, null);
 		}
 	
 	}
@@ -168,10 +116,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 		ResultSet resultSet = null; 
 		
 		try {
-			//1、加载驱动
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2、获取连接对象
-			connection = DriverManager.getConnection("jdbc:mysql:///jdbcdemo", "root", "admin");
+			connection = JdbcUtil.getConnection();
 			//3、获取执行SQL语句对象
 			ps = connection.prepareStatement(sql);
 			ps.setLong(1, id);
@@ -188,31 +134,7 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				if (resultSet != null) {
-					resultSet.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally {
-				try {
-					if (ps != null) {
-						ps.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				finally {
-					try {
-						if (connection != null) {
-							connection.close();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			JdbcUtil.close(connection, ps, resultSet);
 		}
 		return null;
 	}
@@ -234,10 +156,8 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 		ResultSet resultSet = null; 
 		
 		try {
-			//1、加载驱动
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2、获取连接对象
-			connection = DriverManager.getConnection("jdbc:mysql:///jdbcdemo", "root", "admin");
+			connection = JdbcUtil.getConnection();
 			//3、获取执行SQL语句对象
 			ps = connection.prepareStatement(sql);
 			//4、执行SQL
@@ -253,31 +173,7 @@ public class RevanStudentDAOImpl implements IRevanStudentDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				if (resultSet != null) {
-					resultSet.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			finally {
-				try {
-					if (ps != null) {
-						ps.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				finally {
-					try {
-						if (connection != null) {
-							connection.close();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
+			JdbcUtil.close(connection, ps, resultSet);
 		}
 		return list;
 	}

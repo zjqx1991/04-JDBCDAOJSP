@@ -33,7 +33,7 @@ public class RevanStudentTest {
 	
 	@Test
 	public void testDelete() {
-		studentDAO.delete(13L);
+		studentDAO.delete(39L);
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class RevanStudentTest {
 	
 	@Test
 	public void testGet() {
-		RevanStudent student = studentDAO.get(13L);
+		RevanStudent student = studentDAO.get(15L);
 		System.out.println(student.toString());
 	}
 	
