@@ -26,22 +26,22 @@ public class RevanStudentTest {
 	@Test
 	public void testSave() {
 		RevanStudent student = new RevanStudent();
-		student.setName("乔峰");
+		student.setName("陈乔恩");
 		student.setAge(33);
 		studentDAO.sava(student);
 	}
 	
 	@Test
 	public void testDelete() {
-		studentDAO.delete(39L);
+		studentDAO.delete(38L);
 	}
 	
 	@Test
 	public void testUpdate() {
 		RevanStudent student = new RevanStudent();
-		student.setId(14L);
-		student.setAge(50);
-		student.setName("段正淳");
+		student.setId(41L);
+		student.setAge(40);
+		student.setName("东方不败");
 		studentDAO.update(student);
 	}
 	
