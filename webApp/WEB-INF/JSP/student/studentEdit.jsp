@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<form action="/student/save" method="POST" >
+	<form action="/student/web?cmd=save" method="POST" >
 		<input type="text" hidden="hidden" name="id" value="${student.id}" >
 		账号：<input type="text" name="name" value="${student.name}" >
 		<br />
